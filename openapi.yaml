@@ -1,16 +1,19 @@
 openapi: 3.1.0
 info:
   title: Train Travel API
-  description: API for finding and booking train trips across Europe.
+  description: |
+    API for finding and booking train trips across Europe.
+
+    Updating the main introduction
   version: 1.0.0
   contact:
     name: Train Support
     url: https://example.com/support
     email: support@example.com
-  license: 
+  license:
     name: Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International
     identifier: CC-BY-NC-SA-4.0
-    
+
 x-topics:
   - title: Getting started
     content:

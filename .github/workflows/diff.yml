@@ -1,0 +1,35 @@
+name: Diff API documentation
+
+on:
+  pull_request_target:
+    branches:
+      - main
+    paths:
+      - 'openapi.yaml'
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  api-diff:
+    if: ${{ github.event_name == 'pull_request_target' }}
+    name: Check API diff on Bump.sh
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - run: |
+          ls -la .
+          git show
+          env
+      - name: Comment pull request with API diff
+        uses: bump-sh/github-action@v1
+        with:
+          doc: serverless
+          token: ${{secrets.BUMP_TOKEN}}
+          file: openapi.yaml
+          command: diff
+          fail_on_breaking: true
+        env:
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
